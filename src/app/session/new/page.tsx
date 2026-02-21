@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Recorder from "@/components/Recorder";
 
 const genres = [
   "Gospel",
@@ -40,32 +41,34 @@ export default function NewSessionPage() {
         </p>
       </div>
 
-      {/* Upload Section */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-6 space-y-4">
-        <h2 className="font-semibold">Upload or Record</h2>
+{/* Upload Section */}
+<div className="space-y-6">
+  <div className="rounded-xl border border-white/10 bg-white/5 p-6 space-y-4">
+    <h2 className="font-semibold">Upload File</h2>
 
-        <input
-          type="file"
-          accept=".wav,.mp3,.aiff"
-          onChange={(e) =>
-            setFileName(e.target.files?.[0]?.name || null)
-          }
-          className="block w-full text-sm text-slate-300 file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#070B1A] hover:file:bg-cyan-400"
-        />
+    <input
+      type="file"
+      accept=".wav,.mp3,.aiff"
+      onChange={(e) =>
+        setFileName(e.target.files?.[0]?.name || null)
+      }
+      className="block w-full text-sm text-slate-300 file:mr-4 file:rounded-lg file:border-0 file:bg-cyan-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#070B1A] hover:file:bg-cyan-400"
+    />
 
-        {fileName && (
-          <p className="text-sm text-cyan-400">
-            Selected: {fileName}
-          </p>
-        )}
+    {fileName && (
+      <p className="text-sm text-cyan-400">
+        Selected: {fileName}
+      </p>
+    )}
+  </div>
 
-        <button
-          type="button"
-          className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:bg-white/10 transition"
-        >
-          Record in Browser (coming next)
-        </button>
-      </div>
+  <Recorder
+    onRecordingComplete={(blob) => {
+      setFileName("Recorded Vocal");
+      console.log("Recorded blob:", blob);
+    }}
+  />
+</div>
 
       {/* Genre Selection */}
       <div className="space-y-3">
