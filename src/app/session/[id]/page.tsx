@@ -57,6 +57,25 @@ export default function SessionPage({ params }: { params: { id: string } }) {
     }
   }, [meta, projectId, setMeta]);
 
+  useEffect(() => {
+  // Seed mock versions one-time (dev only). When backend exists, remove this.
+  if (versions.length === 0) {
+    addVersion({
+      id: "v1",
+      stage: "raw",
+      label: "Raw v1",
+      createdAt: "2 mins ago",
+    });
+    addVersion({
+      id: "v2",
+      stage: "mix",
+      label: "Mix v1",
+      createdAt: "1 min ago",
+    });
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
   // Find the currently selected version audio for this stage (optional until backend)
   const currentAudioUrl = useMemo(() => {
     if (!activeVersionId) return undefined;
