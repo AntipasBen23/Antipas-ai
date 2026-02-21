@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
@@ -52,21 +53,25 @@ export default function RootLayout({
               </div>
 
               <nav className="flex items-center gap-3">
-                <a
-                  href="#"
+                <Link
+                  href="/dashboard"
                   className="rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
                 >
                   Projects
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
                 >
                   Help
-                </a>
-                <button className="rounded-lg bg-cyan-500/90 px-4 py-2 text-sm font-semibold text-[#070B1A] hover:bg-cyan-400">
+                </Link>
+
+                <Link
+                  href="/session/new"
+                  className="rounded-lg bg-cyan-500/90 px-4 py-2 text-sm font-semibold text-[#070B1A] hover:bg-cyan-400 transition"
+                >
                   Start Session
-                </button>
+                </Link>
               </nav>
             </div>
           </header>
